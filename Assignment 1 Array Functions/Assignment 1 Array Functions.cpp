@@ -2,6 +2,7 @@
 // Project: Assignment 1
 
 #include <iostream>
+#include <string>
 #include "Header.h"
 
 using namespace std;
@@ -12,7 +13,7 @@ int main()
 	int arr[100];
     
 	char input;
-    int index = 0;
+    string index = "";
 
 	try {
 		inputDocument(arr);
@@ -50,7 +51,13 @@ int main()
         else if (toupper(input) == 'R') {
             cout << "Which index in the array do you want to remove.\n";
             cin >> index;
-            removeInteger(arr, index, &size);
+            cin.ignore(1000, '\n');
+            try {
+                removeInteger(arr, index, &size);
+            }
+            catch (...) {
+                cout << "Error removing Integer";
+            }
         }
    
         else {

@@ -55,6 +55,7 @@ int searchArray(int arr[]) {
     cout << "What Number do you want to search for?\n";
     cin >> query;
 
+
     //linear search no reason to assume numbers are sorted
     for (int i = 0; i < 100; i++) {
         if (arr[i] == query) {
@@ -64,22 +65,48 @@ int searchArray(int arr[]) {
     return result;
 }
 
+//check if input is a number
+bool isNumber(string num) {
+
+    int count = 0;
+    for (int i = 0; i < num.length(); i++)
+    {
+        if (isdigit(num[i]) == false)
+        {
+            count = 1;
+            break;
+        }
+        else
+            count = 0;
+
+    } 
+    if (count == 0)
+        return true;
+
+    else
+        return false;
+}
+
+
 //Output a basic menu to use the functions
 void printMenu() {
-    cout << "Would you like to (S)earch the array, (M)odify a number in the array, (A)dd a number to the array, (R)emove a number from the array, or (Q)uit\n";
+    cout << "Would you like to (S)earch the array, (M)odify a number in the array, (A)dd a number to the array, (R)emove a number from the array, (P)rint the Array, or (Q)uit\n";
 }
 
 //Change a value in the array based on the index
-void modifyInteger(int arr[], int index) {
-
+void modifyInteger(int arr[], string index) {
+    if (!isNumber(index)) {
+        cout << "Input failed. Please try again and enter a number.\n";
+        return;
+    }
     int value, oldValue;
     cout << "What do you want to change it to?\n";
     cin >> value;
     cin.ignore(1000, '\n');
 
-    oldValue = arr[index];
+    oldValue = arr[stoi(index)];
 
-    arr[index] = value;
+    arr[stoi(index)] = value;
 
     cout << "Value change at " << index << " Previous value: " << oldValue << " New Value: " << value << endl;
 }
@@ -87,21 +114,29 @@ void modifyInteger(int arr[], int index) {
 //Create new array and add a new integer to it
 void addInteger(int arr[], int *size) {
 
-    int element;
+    string element;
 
     cout << endl << "Enter new element: ";
     cin >> element;
+    if (!isNumber(element)) {
+        cout << "Input failed. Please try again and enter a number.\n";
+        return;
+    }
 
-    arr[*size] = element;
+    arr[*size] = stoi(element);
 
     *size = *size + 1;
 
     cout << "Element Inserted\n";
 }
 
-void removeInteger(int arr[], int index, int* size) {
+void removeInteger(int arr[], string index, int* size) {
+    if (!isNumber(index)) {
+        cout << "Input failed. Please try again and enter a number.\n";
+        return;
+    }
 
-    for (int i = index; i < *size - 1; i++)
+    for (int i = stoi(index); i < *size - 1; i++)
         arr[i] = arr[i + 1];
 
 

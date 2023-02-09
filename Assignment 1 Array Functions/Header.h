@@ -21,7 +21,7 @@ void printMenu();
 //Pre: Nothing
 //Post: Output a menu to the user
 
-void modifyInteger(int arr[], int index);
+void modifyInteger(int arr[], std::string index);
 //Pre: take in the array and the index of an int
 //Post: Modify the location to the users request
 
@@ -29,6 +29,10 @@ void addInteger(int arr[], int *size);
 //Pre: Take in the array and the size of the array
 //Post: Add an integer to the end of the array by making a new one
 
-void removeInteger(int arr[], int index, int* size);
+void removeInteger(int arr[], std::string index, int* size);
 //Pre: Take in the array and a pointer to the size of the array
 //Post: Remove an integer from the array
+
+bool isNumber(std::string num);
+//Pre: take in a string
+//Post: check if the string is a number
