@@ -8,8 +8,11 @@ using namespace std;
 
 int main()
 {
+    int size = 100;
 	int arr[100];
+    
 	char input;
+    int index = 0;
 
 	try {
 		inputDocument(arr);
@@ -17,7 +20,7 @@ int main()
 	catch (...){
 		cout << "Error opening File";
 	}
-
+    
     printMenu();
 	cin >> input;
 	cin.ignore(1000, '\n');
@@ -34,13 +37,20 @@ int main()
             }
         }
         else if (toupper(input) == 'P') {
-            printArray(arr);
+            printArray(arr, size);
         }
-        else if (toupper(input) == 'M') {
+        else if (toupper(input) == 'M') {     
+            cout << "Which index in the array do you want to change.\n";
+            cin >> index;
+            modifyInteger(arr, index);
         }
         else if (toupper(input) == 'A') {
+            addInteger(arr, &size);
         }
         else if (toupper(input) == 'R') {
+            cout << "Which index in the array do you want to remove.\n";
+            cin >> index;
+            removeInteger(arr, index, &size);
         }
    
         else {

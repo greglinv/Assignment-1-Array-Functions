@@ -34,17 +34,17 @@ void inputDocument(int arr[]) {
         }
     }
 
-	while (getline(fin, line))
 
 	ifstream close();
 }
 
 //Output the Array
-void printArray(int arr[]) {
-
-	for (int i = 0; i < 100; i++) {
+void printArray(int arr[], int size) {
+    
+	for (int i = 0; i < size; i++) {
 		cout << arr[i] << " ";
 	}
+
     cout << endl;
 }
 
@@ -72,8 +72,40 @@ void printMenu() {
 //Change a value in the array based on the index
 void modifyInteger(int arr[], int index) {
 
+    int value, oldValue;
+    cout << "What do you want to change it to?\n";
+    cin >> value;
+    cin.ignore(1000, '\n');
+
+    oldValue = arr[index];
+
+    arr[index] = value;
+
+    cout << "Value change at " << index << " Previous value: " << oldValue << " New Value: " << value << endl;
 }
 
-void addInteger(int arr[]) {
+//Create new array and add a new integer to it
+void addInteger(int arr[], int *size) {
 
+    int element;
+
+    cout << endl << "Enter new element: ";
+    cin >> element;
+
+    arr[*size] = element;
+
+    *size = *size + 1;
+
+    cout << "Element Inserted\n";
+}
+
+void removeInteger(int arr[], int index, int* size) {
+
+    for (int i = index; i < *size - 1; i++)
+        arr[i] = arr[i + 1];
+
+
+    *size = *size - 1;
+
+    cout << "Element Removed\n";
 }
